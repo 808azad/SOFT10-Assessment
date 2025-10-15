@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
 
+//assuming authTokens.json located in the same folder
 const authToken = require('./authTokens.json');
 const crypto = require('crypto');
 
+//enabling proper JSON usage in Express
 app.use(express.json());
 
 //custom request validator
@@ -19,7 +21,7 @@ const validateRequest = (request, authToken) => {
     }
 
     //validating if client token exist in authToken.json
-    const matchedClient = authToken.clients.find(c => c.client_toker === clientToken);
+    const matchedClient = authToken.clients.find(c => c.client_token === clientToken);
     if(!matchedClient){
         return {
             valid: false,
@@ -72,7 +74,7 @@ const encodeMessageID = (messageID) => {
     const algorithm = 'aes-256-cbc';
     const secretStr = 'my-secret-key';
 
-    //creating 32 byte has for AES algorithm
+    //creating 32 byte hash for AES algorithm
     const key = crypto.createHash('sha256').update(secretStr).digest();
     
     //defining custom init. vector for getting the same encryption each time
@@ -108,7 +110,7 @@ app.post('/v1/message/send', async(req, res) => {
             typing_time: req.body.Options.typing ? 1 : 0
         }
 
-        //checkig if Option type is text or image
+        //checking if Option type is text or image
         const vendorURL = req.body.type === 'text' 
             ? 'https://example.com/message/send-text' 
             : 'https://example.com/message/send-image';
