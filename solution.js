@@ -128,6 +128,7 @@ app.post('/v1/message/send', async(req, res) => {
         let vendorMessageID = vendorResponse.message_id;
         let encodedMessage = encodeMessageID(vendorMessageID); 
 
+        // returning the final response
         return res.json({
             success: true,
             message_id: encodedMessage,
