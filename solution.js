@@ -134,7 +134,7 @@ app.post('/v1/message/send', async(req, res) => {
             message_id: encodedMessage,
             from_me: true,
             type: req.body.type,
-            message: req.body.Options.message,
+            message: req.body.Options.message || "",
             timestamp: vendorResponse.timestamp
         });
     } catch(err){
