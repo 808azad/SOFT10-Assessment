@@ -9,6 +9,6 @@ exports.sendMessage = (req, res) => {
         return res.json(responseHelper.success(result));
     } catch(err){
         console.error(err);
-        return res.status(500).json(responseHelper.error(err));
+        return res.status(400).json(responseHelper.error(err));
     }
 }
