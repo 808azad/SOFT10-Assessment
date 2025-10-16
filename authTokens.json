@@ -1,0 +1,12 @@
+{
+  "clients": [
+    {
+      "client_token": "client-token-123",
+      "vendor_token": "vendor-token-abc"
+    },
+    {
+      "client_token": "client-token-xyz",
+      "vendor_token": "vendor-token-def"
+    }
+  ]
+}
